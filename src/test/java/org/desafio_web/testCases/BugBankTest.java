@@ -13,6 +13,7 @@ public class BugBankTest extends BaseTest {
     public void accomplishTransferAccountsTest() {
         indexTask = new IndexTask(DriverManager.getDriver());
         indexTask.createRegister();
+        indexTask.createRegisterOther();
     }
 
 }
