@@ -10,11 +10,9 @@ public class BugBankTest extends BaseTest {
     private IndexTask indexTask;
 
     @Test
-    public void accomplishTransferAccountsTest() throws InterruptedException {
+    public void accomplishTransferAccountsTest() {
         indexTask = new IndexTask(DriverManager.getDriver());
         indexTask.createRegister();
-        Thread.sleep(5000);
-
     }
 
 }
