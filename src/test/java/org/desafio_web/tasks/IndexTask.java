@@ -12,7 +12,12 @@ public class IndexTask {
     }
 
     public void createRegister() {
-        indexAppObjects.getButtonRegister().click();
+        indexAppObjects.getRegisterButton().click();
+        indexAppObjects.getEmailField().sendKeys("Jeferson@hotmail.com");
+        indexAppObjects.getNameField().sendKeys("Jeferson");
+        indexAppObjects.getPasswordField().sendKeys("1234567890");
+        indexAppObjects.getPasswordConfirmationField().sendKeys("1234567890");
+        indexAppObjects.getCreateAccountBalanceToggle().click();
     }
 
 }
