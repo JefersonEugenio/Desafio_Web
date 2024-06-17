@@ -12,8 +12,28 @@ public class IndexAppObjects {
         this.driver = driver;
     }
 
-    public WebElement getButtonRegister() {
+    public WebElement getRegisterButton() {
         return driver.findElement(By.cssSelector(".ihdmxA"));
+    }
+
+    public WebElement getEmailField() {
+        return driver.findElement(By.xpath("//div[@class='card__register']//input[@name='email']"));
+    }
+
+    public WebElement getNameField() {
+        return driver.findElement(By.name("name"));
+    }
+
+    public WebElement getPasswordField() {
+        return driver.findElement(By.xpath("//div[@class='card__register']//input[@name='password']"));
+    }
+
+    public WebElement getPasswordConfirmationField() {
+        return driver.findElement(By.name("passwordConfirmation"));
+    }
+
+    public WebElement getCreateAccountBalanceToggle() {
+        return driver.findElement(By.cssSelector(".kIwoPV"));
     }
 
 }
