@@ -11,6 +11,7 @@ public class BaseTest extends DriverFactory {
     @BeforeAll
     public static void setUp() {
         DriverManager.setDriver(getBrower(Drivers.CHROME));
+        DriverManager.getDriver().get("https://bugbank.netlify.app/");
     }
 
     @AfterAll
