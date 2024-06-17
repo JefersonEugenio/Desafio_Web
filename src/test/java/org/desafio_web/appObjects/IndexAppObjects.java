@@ -1,6 +1,7 @@
 package org.desafio_web.appObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -33,7 +34,9 @@ public class IndexAppObjects {
     }
 
     public WebElement getCreateAccountBalanceToggle() {
-        return driver.findElement(By.cssSelector(".kIwoPV"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 1000);");
+        return driver.findElement(By.id("toggleAddBalance"));
     }
 
 }
