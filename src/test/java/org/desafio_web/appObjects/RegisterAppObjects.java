@@ -16,27 +16,23 @@ public class IndexAppObjects {
         wait = new Wait(driver);
     }
 
-    public WebElement getRegisterButton() {
-        return driver.findElement(By.cssSelector(".ihdmxA"));
-    }
-
-    public WebElement getEmailField() {
+    public WebElement getRegisterEmailField() {
         return driver.findElement(By.xpath("//div[@class='card__register']//input[@name='email']"));
     }
 
-    public WebElement getNameField() {
+    public WebElement getRegisterNameField() {
         return driver.findElement(By.name("name"));
     }
 
-    public WebElement getPasswordField() {
+    public WebElement getRegisterPasswordField() {
         return driver.findElement(By.xpath("//div[@class='card__register']//input[@name='password']"));
     }
 
-    public WebElement getPasswordConfirmationField() {
+    public WebElement getResgiterPasswordConfirmationField() {
         return driver.findElement(By.name("passwordConfirmation"));
     }
 
-    public WebElement getCreateAccountBalanceToggle() {
+    public WebElement getRegisterCreateAccountBalanceToggle() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 1000);");
         return driver.findElement(By.id("toggleAddBalance"));
@@ -52,6 +48,15 @@ public class IndexAppObjects {
     public WebElement getCloseModalButton() {
         wait.waitVisibilityElement(By.id("btnCloseModal"));
         return driver.findElement(By.id("btnCloseModal"));
+    }
+
+    public WebElement getAccessButton() {
+        return driver.findElement(By.xpath("//div[@class='login__buttons']//button[@type='submit']"));
+    }
+
+    public WebElement getNumberAccountText() {
+        wait.waitVisibilityElement(By.id("modalText"));
+        return driver.findElement(By.id("modalText"));
     }
 
 }
