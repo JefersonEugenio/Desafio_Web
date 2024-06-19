@@ -6,12 +6,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class IndexAppObjects {
+public class RegisterAppObjects {
 
     private final WebDriver driver;
     private final Wait wait;
 
-    public IndexAppObjects (WebDriver driver) {
+    public RegisterAppObjects(WebDriver driver) {
         this.driver = driver;
         wait = new Wait(driver);
     }
