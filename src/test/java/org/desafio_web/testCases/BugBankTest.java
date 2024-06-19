@@ -1,19 +1,28 @@
 package org.desafio_web.testCases;
 
+import org.desafio_web.framework.data.EncapsulationData;
 import org.desafio_web.framework.supports.BaseTest;
 import org.desafio_web.framework.webDrivers.DriverManager;
-import org.desafio_web.tasks.IndexTask;
+import org.desafio_web.tasks.RegisterTask;
+import org.desafio_web.tasks.LoginTask;
 import org.junit.jupiter.api.Test;
+
+import static org.desafio_web.framework.data.UseresData.userEugenio;
+import static org.desafio_web.framework.data.UseresData.userJeferson;
 
 public class BugBankTest extends BaseTest {
 
-    private IndexTask indexTask;
+    private RegisterTask indexTask = new RegisterTask(DriverManager.getDriver());
+    private LoginTask loginTask= new LoginTask(DriverManager.getDriver());
+
+    EncapsulationData jeferson = userJeferson();
+    EncapsulationData eugenio = userEugenio();
 
     @Test
     public void accomplishTransferAccountsTest() {
-        indexTask = new IndexTask(DriverManager.getDriver());
-        indexTask.createRegister();
-        indexTask.createRegisterOther();
+        indexTask.createRegister(jeferson);
+        indexTask.createRegister(eugenio);
+        loginTask.accessAccount(jeferson);
     }
 
 }
