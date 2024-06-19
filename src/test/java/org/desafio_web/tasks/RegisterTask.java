@@ -27,6 +27,8 @@ public class RegisterTask {
         registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getConfirmPassword());
         registerAppObjects.getRegisterCreateAccountBalanceToggle().click();
         registerAppObjects.getRegisterFinalButton();
+        user.setAccount(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
+        ObjectsUtils.setPropertiesData("dados", user.getName(), user.getAccount());
         registerAppObjects.getCloseModalButton().click();
         DriverManager.getDriver().navigate().refresh();
     }
