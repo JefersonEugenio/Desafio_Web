@@ -1,5 +1,6 @@
 package org.desafio_web.framework.supports;
 
+import org.desafio_web.framework.utils.ObjectsUtils;
 import org.desafio_web.framework.webDrivers.DriverFactory;
 import org.desafio_web.framework.webDrivers.DriverManager;
 import org.desafio_web.framework.webDrivers.Drivers;
@@ -11,7 +12,7 @@ public class BaseTest extends DriverFactory {
     @BeforeAll
     public static void setUp() {
         DriverManager.setDriver(getBrower(Drivers.CHROME));
-        DriverManager.getDriver().get("https://bugbank.netlify.app/");
+        DriverManager.getDriver().get(ObjectsUtils.getPropertiesData("path", "bugbank"));
     }
 
     @AfterAll
