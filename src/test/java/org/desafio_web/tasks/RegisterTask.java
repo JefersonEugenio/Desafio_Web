@@ -3,8 +3,10 @@ package org.desafio_web.tasks;
 import org.desafio_web.appObjects.RegisterAppObjects;
 import org.desafio_web.appObjects.LoginAppObjects;
 import org.desafio_web.framework.data.EncapsulationData;
+import org.desafio_web.framework.utils.CreateFolder;
 import org.desafio_web.framework.utils.ObjectsUtils;
 import org.desafio_web.framework.webDrivers.DriverManager;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 public class RegisterTask {
@@ -27,7 +29,9 @@ public class RegisterTask {
         registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getConfirmPassword());
         registerAppObjects.getRegisterCreateAccountBalanceToggle().click();
         registerAppObjects.getRegisterFinalButton();
+        Assertions.assertTrue(registerAppObjects.getNumberAccountText().getText().contains("foi criada com sucesso"));
         user.setAccount(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
+//        CreateFolder.createDirectory("./src/main/resources/properties/"); **criar arquivo dados.properties
         ObjectsUtils.setPropertiesData("dados", user.getName(), user.getAccount());
         registerAppObjects.getCloseModalButton().click();
         DriverManager.getDriver().navigate().refresh();
