@@ -23,13 +23,27 @@ public class BugBankTest extends BaseTest {
     EncapsulationData eugenio = userEugenio();
 
     @Test
-    public void accomplishTransferAccountsTest() {
+    public void accomplishTransferAccountsTest() throws InterruptedException {
         indexTask.createRegister(jeferson);
+        loginTask.accessAccount(jeferson);
+        homeTask.validateBalance(jeferson);
+        homeTask.AccountExit();
         indexTask.createRegister(eugenio);
+        loginTask.accessAccount(eugenio);
+        homeTask.validateBalance(eugenio);
+        homeTask.AccountExit();
+        Thread.sleep(5000);
         loginTask.accessAccount(jeferson);
         homeTask.transferOtherAccount();
         transferTask.dataAccount(eugenio);
+        Thread.sleep(5000);
         loginTask.accessAccount(eugenio);
+        homeTask.validateBalance(eugenio);
+        homeTask.AccountExit();
+        loginTask.accessAccount(jeferson);
+        homeTask.validateBalance(jeferson);
+        Thread.sleep(5000);
+        homeTask.AccountExit();
     }
 
 }
