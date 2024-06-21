@@ -17,8 +17,9 @@ public class ExtractTask {
 
     public void validateExtract(EncapsulationData user) {
         String value = extractAppObjects.getBalanceText().getText().replaceAll("[^0-9.,]", "");
-        System.out.println(">>> " + value);
-        ObjectsUtils.setPropertiesData("dados", "Saldo_"+user.getName(), value);
+        user.setBalance(value);
+        System.out.println("saldo>>> " + user.getBalance());
+        ObjectsUtils.setPropertiesData("dados", "Saldo_"+user.getName(), user.getBalance());
         extractAppObjects.getExitButton().click();
     }
 
