@@ -21,4 +21,5 @@ public class ExtractTask {
         ObjectsUtils.setPropertiesData("dados", "Saldo_"+user.getName(), value);
         extractAppObjects.getExitButton().click();
     }
+
 }
