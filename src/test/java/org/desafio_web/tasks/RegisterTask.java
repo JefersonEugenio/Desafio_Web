@@ -26,7 +26,7 @@ public class RegisterTask {
         registerAppObjects.getRegisterEmailField().sendKeys(user.getEmail());
         registerAppObjects.getRegisterNameField().sendKeys(user.getName());
         registerAppObjects.getRegisterPasswordField().sendKeys(user.getPassword());
-        registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getConfirmPassword());
+        registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getPassword());
         registerAppObjects.getRegisterCreateAccountBalanceToggle().click();
         registerAppObjects.getRegisterFinalButton();
         user.setAccount(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
