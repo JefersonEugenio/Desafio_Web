@@ -15,11 +15,6 @@ public class HomeAppObjects {
         wait = new Wait(driver);
     }
 
-    public WebElement getBalanceText() {
-        wait.waitVisibilityElement(By.id("textBalance"));
-        return driver.findElement(By.id("textBalance"));
-    }
-
     public WebElement getTransferButton() {
         wait.waitVisibilityElement(By.id("btn-TRANSFERÊNCIA"));
         return driver.findElement(By.id("btn-TRANSFERÊNCIA"));
@@ -33,4 +28,5 @@ public class HomeAppObjects {
     public WebElement getExitButton() {
         return driver.findElement(By.id("btnExit"));
     }
+
 }
