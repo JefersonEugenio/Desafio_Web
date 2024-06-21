@@ -26,6 +26,7 @@ public class HomeAppObjects {
     }
 
     public WebElement getExtractButton() {
+        wait.waitVisibilityElement(By.id("btn-EXTRATO"));
         return driver.findElement(By.id("btn-EXTRATO"));
     }
 
