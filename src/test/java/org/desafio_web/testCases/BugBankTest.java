@@ -3,10 +3,7 @@ package org.desafio_web.testCases;
 import org.desafio_web.framework.data.EncapsulationData;
 import org.desafio_web.framework.supports.BaseTest;
 import org.desafio_web.framework.webDrivers.DriverManager;
-import org.desafio_web.tasks.HomeTask;
-import org.desafio_web.tasks.RegisterTask;
-import org.desafio_web.tasks.LoginTask;
-import org.desafio_web.tasks.TransferTask;
+import org.desafio_web.tasks.*;
 import org.junit.jupiter.api.Test;
 
 import static org.desafio_web.framework.data.UseresData.userEugenio;
@@ -18,32 +15,30 @@ public class BugBankTest extends BaseTest {
     private LoginTask loginTask = new LoginTask(DriverManager.getDriver());
     private HomeTask homeTask = new HomeTask(DriverManager.getDriver());
     private TransferTask transferTask = new TransferTask(DriverManager.getDriver());
+    private ExtractTask extractTask = new ExtractTask(DriverManager.getDriver());
 
     EncapsulationData jeferson = userJeferson();
     EncapsulationData eugenio = userEugenio();
 
     @Test
-    public void accomplishTransferAccountsTest() throws InterruptedException {
+    public void accomplishTransferAccountsTest() {
         indexTask.createRegister(jeferson);
         loginTask.accessAccount(jeferson);
-        homeTask.validateBalance(jeferson);
-        homeTask.AccountExit();
+        homeTask.accountExtract();
+        extractTask.validateExtract(jeferson);
         indexTask.createRegister(eugenio);
         loginTask.accessAccount(eugenio);
-        homeTask.validateBalance(eugenio);
-        homeTask.AccountExit();
-        Thread.sleep(5000);
+        homeTask.accountExtract();
+        extractTask.validateExtract(eugenio);
         loginTask.accessAccount(jeferson);
         homeTask.transferOtherAccount();
         transferTask.dataAccount(eugenio);
-        Thread.sleep(5000);
         loginTask.accessAccount(eugenio);
         homeTask.validateBalance(eugenio);
-        homeTask.AccountExit();
+        homeTask.accountExit();
         loginTask.accessAccount(jeferson);
         homeTask.validateBalance(jeferson);
-        Thread.sleep(5000);
-        homeTask.AccountExit();
+        homeTask.accountExit();
     }
 
 }
