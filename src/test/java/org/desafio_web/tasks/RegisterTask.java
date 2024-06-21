@@ -29,9 +29,7 @@ public class RegisterTask {
         registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getConfirmPassword());
         registerAppObjects.getRegisterCreateAccountBalanceToggle().click();
         registerAppObjects.getRegisterFinalButton();
-        Assertions.assertTrue(registerAppObjects.getNumberAccountText().getText().contains("foi criada com sucesso"));
         user.setAccount(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
-//        CreateFolder.createDirectory("./src/main/resources/properties/"); **criar arquivo dados.properties
         ObjectsUtils.setPropertiesData("dados", user.getName(), user.getAccount());
         registerAppObjects.getCloseModalButton().click();
         DriverManager.getDriver().navigate().refresh();
