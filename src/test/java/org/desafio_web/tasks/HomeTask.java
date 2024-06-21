@@ -24,7 +24,11 @@ public class HomeTask {
         ObjectsUtils.setPropertiesData("dados", "Saldo_"+user.getName(), value);
     }
 
-    public void AccountExit() {
+    public void accountExit() {
         homeAppObjects.getExitButton().click();
+    }
+
+    public void accountExtract() {
+        homeAppObjects.getExtractButton().click();
     }
 }
