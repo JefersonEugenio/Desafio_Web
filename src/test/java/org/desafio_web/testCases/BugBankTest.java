@@ -34,11 +34,11 @@ public class BugBankTest extends BaseTest {
         homeTask.transferOtherAccount();
         transferTask.dataAccount(eugenio);
         loginTask.accessAccount(eugenio);
-        homeTask.validateBalance(eugenio);
-        homeTask.accountExit();
+        homeTask.accountExtract();
+        extractTask.validateExtract(eugenio);
         loginTask.accessAccount(jeferson);
-        homeTask.validateBalance(jeferson);
-        homeTask.accountExit();
+        homeTask.accountExtract();
+        extractTask.validateExtract(jeferson);
     }
 
 }
