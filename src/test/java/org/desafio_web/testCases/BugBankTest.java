@@ -6,8 +6,8 @@ import org.desafio_web.framework.webDrivers.DriverManager;
 import org.desafio_web.tasks.*;
 import org.junit.jupiter.api.Test;
 
-import static org.desafio_web.framework.data.UseresData.userEugenio;
-import static org.desafio_web.framework.data.UseresData.userJeferson;
+import static org.desafio_web.framework.data.UseresData.userTwo;
+import static org.desafio_web.framework.data.UseresData.userOne;
 
 public class BugBankTest extends BaseTest {
 
@@ -17,28 +17,28 @@ public class BugBankTest extends BaseTest {
     private TransferTask transferTask = new TransferTask(DriverManager.getDriver());
     private ExtractTask extractTask = new ExtractTask(DriverManager.getDriver());
 
-    EncapsulationData jeferson = userJeferson();
-    EncapsulationData eugenio = userEugenio();
+    EncapsulationData user1 = userOne();
+    EncapsulationData user2 = userTwo();
 
     @Test
-    public void accomplishTransferAccountsTest() {
-        indexTask.createRegister(jeferson);
-        loginTask.accessAccount(jeferson);
+    public void accomplishTransferAccountsTest() throws InterruptedException {
+        indexTask.createRegister(user1);
+        loginTask.accessAccount(user1);
         homeTask.accountExtract();
-        extractTask.validateExtract(jeferson);
-        indexTask.createRegister(eugenio);
-        loginTask.accessAccount(eugenio);
+        extractTask.validateExtract(user1);
+        indexTask.createRegister(user2);
+        loginTask.accessAccount(user2);
         homeTask.accountExtract();
-        extractTask.validateExtract(eugenio);
-        loginTask.accessAccount(jeferson);
+        extractTask.validateExtract(user2);
+        loginTask.accessAccount(user1);
         homeTask.transferOtherAccount();
-        transferTask.dataAccount(eugenio);
-        loginTask.accessAccount(eugenio);
+        transferTask.dataAccount(user2);
+        loginTask.accessAccount(user2);
         homeTask.accountExtract();
-        extractTask.validateExtract(eugenio);
-        loginTask.accessAccount(jeferson);
+        extractTask.validateExtract(user2);
+        loginTask.accessAccount(user1);
         homeTask.accountExtract();
-        extractTask.validateExtract(jeferson);
+        extractTask.validateExtract(user1);
     }
 
 }
