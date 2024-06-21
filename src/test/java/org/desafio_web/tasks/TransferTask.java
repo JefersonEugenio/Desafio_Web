@@ -2,6 +2,7 @@ package org.desafio_web.tasks;
 
 import org.desafio_web.appObjects.TransferAppObjects;
 import org.desafio_web.framework.data.EncapsulationData;
+import org.desafio_web.framework.supports.Fakers;
 import org.desafio_web.framework.utils.ObjectsUtils;
 import org.openqa.selenium.WebDriver;
 
@@ -21,10 +22,17 @@ public class TransferTask {
         String digit = numberAccount.split("-")[1];
         transferAppObjects.getNumberAccountField().sendKeys(number);
         transferAppObjects.getNumberDigitField().sendKeys(digit);
-        transferAppObjects.getValueTransferFiled().sendKeys("200");
+        transferAppObjects.getValueTransferFiled().sendKeys(value());
         transferAppObjects.getDescriptionFiled().sendKeys("Doar");
         transferAppObjects.getTransferNowButton().click();
         transferAppObjects.getTransferCloseButton().click();
         transferAppObjects.getTransExitButton().click();
+    }
+
+    public String value() {
+        Fakers fakers = new Fakers();
+        double value = fakers.getValue();
+        String valueStr = Double.toString(value);
+        return valueStr;
     }
 }
