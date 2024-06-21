@@ -15,6 +15,10 @@ public class EncapsulationData {
         this.confirmPassword = confirmPassword;
     }
 
+    public EncapsulationData() {
+
+    }
+
     public String getEmail() {
         return email;
     }
@@ -54,4 +58,5 @@ public class EncapsulationData {
     public void setAccount(String account) {
         this.account = account;
     }
+
 }
