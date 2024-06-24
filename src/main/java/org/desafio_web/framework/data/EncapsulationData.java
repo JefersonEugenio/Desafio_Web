@@ -2,17 +2,15 @@ package org.desafio_web.framework.data;
 
 public class EncapsulationData {
 
-    private String email;
-    private String name;
-    private String password;
-    private String confirmPassword;
+    private String email, name, password;
     private String account;
+    private String balance, transferValue;
+//    private double transferValue;
 
     public EncapsulationData(String email, String name, String password, String confirmPassword) {
         this.email = email;
         this.name = name;
         this.password = password;
-        this.confirmPassword = confirmPassword;
     }
 
     public EncapsulationData() {
@@ -43,14 +41,6 @@ public class EncapsulationData {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
     public String getAccount() {
         return account;
     }
@@ -59,4 +49,19 @@ public class EncapsulationData {
         this.account = account;
     }
 
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public String getTransferValue() {
+        return transferValue;
+    }
+
+    public void setTransferValue(String transferValue) {
+        this.transferValue = transferValue;
+    }
 }
