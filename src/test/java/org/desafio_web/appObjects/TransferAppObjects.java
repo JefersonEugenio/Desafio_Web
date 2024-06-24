@@ -37,6 +37,7 @@ public class TransferAppObjects {
     }
 
     public WebElement getTransferSuccessText() {
+        wait.waitVisibilityElement(By.id("modalText"));
         return driver.findElement(By.id("modalText"));
     }
 
