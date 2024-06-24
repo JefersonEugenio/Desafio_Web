@@ -22,23 +22,44 @@ public class BugBankTest extends BaseTest {
 
     @Test
     public void accomplishTransferAccountsTest() throws InterruptedException {
+        createAccountUserOne();
+        createAccountUserTwo();
+        transerOtherAccount();
+        validateValueUserOne();
+        validateValueUserTwo();
+    }
+
+    public void createAccountUserOne() {
         indexTask.createRegister(user1);
         loginTask.accessAccount(user1);
         homeTask.accountExtract();
         extractTask.validateExtract(user1);
+
+    }
+
+    public void createAccountUserTwo() {
         indexTask.createRegister(user2);
         loginTask.accessAccount(user2);
         homeTask.accountExtract();
         extractTask.validateExtract(user2);
+    }
+
+    public void transerOtherAccount() {
         loginTask.accessAccount(user1);
         homeTask.transferOtherAccount();
-        transferTask.dataAccount(user2);
-        loginTask.accessAccount(user2);
-        homeTask.accountExtract();
-        extractTask.validateExtract(user2);
+        transferTask.dataAccount(user1, user2);
+    }
+
+    public void validateValueUserOne() {
         loginTask.accessAccount(user1);
         homeTask.accountExtract();
         extractTask.validateExtract(user1);
+    }
+
+    public void validateValueUserTwo() {
+        loginTask.accessAccount(user2);
+        homeTask.accountExtract();
+        extractTask.validateExtract(user2);
     }
 
 }
