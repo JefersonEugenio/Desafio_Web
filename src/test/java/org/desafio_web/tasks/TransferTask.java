@@ -1,10 +1,15 @@
 package org.desafio_web.tasks;
 
+import com.aventstack.extentreports.Status;
 import org.desafio_web.appObjects.TransferAppObjects;
 import org.desafio_web.framework.data.EncapsulationData;
 import org.desafio_web.framework.supports.Fakers;
+import org.desafio_web.framework.supports.Transfer;
 import org.desafio_web.framework.utils.ObjectsUtils;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+
+import static org.desafio_web.framework.tools.Report.extentTest;
 
 public class TransferTask {
 
@@ -16,23 +21,24 @@ public class TransferTask {
         transferAppObjects = new TransferAppObjects(driver);
     }
 
-    public void dataAccount(EncapsulationData user) {
-        String numberAccount = ObjectsUtils.getPropertiesData("dados", user.getName());
+    public void dataAccount(EncapsulationData user1, EncapsulationData user2) {
+        String numberAccount = ObjectsUtils.getPropertiesData("dados", user2.getName());
         String number = numberAccount.split("-")[0];
         String digit = numberAccount.split("-")[1];
         transferAppObjects.getNumberAccountField().sendKeys(number);
         transferAppObjects.getNumberDigitField().sendKeys(digit);
-        transferAppObjects.getValueTransferFiled().sendKeys(value());
+        user1.setTransferValue(Transfer.value());
+        transferAppObjects.getValueTransferFiled().sendKeys(String.valueOf(user1.getTransferValue()));
+        Transfer.transfer(user1.getBalance(), user2.getBalance(), user1.getTransferValue());
         transferAppObjects.getDescriptionFiled().sendKeys("Doar");
         transferAppObjects.getTransferNowButton().click();
+        if (transferAppObjects.getTransferSuccessText().getText().equals("Transferencia realizada com sucesso")) {
+            extentTest.log(Status.PASS, "Transferencia realizada com sucesso");
+        } else {
+            extentTest.log(Status.FAIL, "Conta inválida ou inexistente");
+        }
         transferAppObjects.getTransferCloseButton().click();
         transferAppObjects.getTransExitButton().click();
     }
 
-    public String value() {
-        Fakers fakers = new Fakers();
-        double value = fakers.getValue();
-        String valueStr = Double.toString(value);
-        return valueStr;
-    }
 }
