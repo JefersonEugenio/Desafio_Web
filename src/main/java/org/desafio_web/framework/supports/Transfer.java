@@ -26,10 +26,9 @@ public class Transfer {
         return valueStr;
     }
 
-    public static String transfer(String user1Balance, String user2Balance, String valueTransfer) {
-        System.out.println("RESULT user 1 value: " + sacar(user1Balance, valueTransfer));
-        System.out.println("RESULT user 2 value: " + depositar(user2Balance, valueTransfer));
-        return null;
+    public static void transfer(String user1Balance, String user2Balance, String valueTransfer) {
+        sacar(user1Balance, valueTransfer);
+        depositar(user2Balance, valueTransfer);
     }
 
     public static String depositar(String balance, String valueTransfer) {
@@ -37,31 +36,19 @@ public class Transfer {
         double balanceDouble = Double.parseDouble(balance);
         double valueTransferDouble = Double.parseDouble(valueTransfer);
         if (valueTransferDouble > 0) {
-            System.out.println("=======");
-            System.out.println("A Conta 2 tem valor default: " + df.format(balanceDouble));
-            System.out.println("A conta 2 recebeu o valor de " + df.format(valueTransferDouble).replace(".", ",") + " conta 1.");
-            System.out.println("TOTAL o valor de " + df.format(balanceDouble + valueTransferDouble));
             extentTest.log(Status.INFO, "A conta 2 recebeu o valor de " + valueTransfer.replace(".", ",") + " conta 1");
             return df.format(balanceDouble += valueTransferDouble);
         }
         return null;
     }
 
-    public static String sacar(String balance, String valueTransfer) {
+    public static void sacar(String balance, String valueTransfer) {
         balance = balance.replace(".", "").replace(",", ".");
         double balanceDouble = Double.parseDouble(balance);
         double valueTransferDouble = Double.parseDouble(valueTransfer);
-        System.out.println("Double balanceDouble: " + balanceDouble);
-        System.out.println("Double valueTransferDouble: " + valueTransferDouble);
         if (valueTransferDouble > 0 && valueTransferDouble <= balanceDouble) {
-            System.out.println("-----");
-            System.out.println("A Conta 1 tem valor default: " + df.format(balanceDouble));
-            System.out.println("A conta 1 sacou o valor de " + df.format(valueTransferDouble) + " e depositou na conta 2.");
-            System.out.println("A conta 1 total o valor de " + df.format(balanceDouble - Double.parseDouble(valueTransfer)));
             extentTest.log(Status.INFO, "A conta 1 sacou valor de " + valueTransfer.replace(".", ",") + " e depositou na conta 2");
-            return df.format(balanceDouble -= valueTransferDouble);
         }
-        return null;
     }
 
 }
