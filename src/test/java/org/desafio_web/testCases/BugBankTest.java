@@ -21,7 +21,7 @@ public class BugBankTest extends BaseTest {
     EncapsulationData user2 = userTwo();
 
     @Test
-    public void accomplishTransferAccountsTest() throws InterruptedException {
+    public void accomplishTransferAccountsTest() {
         createAccountUserOne();
         createAccountUserTwo();
         transerOtherAccount();
