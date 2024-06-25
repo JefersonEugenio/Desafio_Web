@@ -5,7 +5,6 @@ public class EncapsulationData {
     private String email, name, password;
     private String account;
     private String balance, transferValue;
-//    private double transferValue;
 
     public EncapsulationData(String email, String name, String password, String confirmPassword) {
         this.email = email;
