@@ -11,17 +11,17 @@ import static org.desafio_web.framework.data.UseresData.userOne;
 
 public class BugBankTest extends BaseTest {
 
-    private RegisterTask indexTask = new RegisterTask(DriverManager.getDriver());
-    private LoginTask loginTask = new LoginTask(DriverManager.getDriver());
-    private HomeTask homeTask = new HomeTask(DriverManager.getDriver());
-    private TransferTask transferTask = new TransferTask(DriverManager.getDriver());
-    private ExtractTask extractTask = new ExtractTask(DriverManager.getDriver());
+    private final RegisterTask indexTask = new RegisterTask(DriverManager.getDriver());
+    private final LoginTask loginTask = new LoginTask(DriverManager.getDriver());
+    private final HomeTask homeTask = new HomeTask(DriverManager.getDriver());
+    private final TransferTask transferTask = new TransferTask(DriverManager.getDriver());
+    private final ExtractTask extractTask = new ExtractTask(DriverManager.getDriver());
 
     EncapsulationData user1 = userOne();
     EncapsulationData user2 = userTwo();
 
     @Test
-    public void accomplishTransferAccountsTest() {
+    public void accomplishTransferAccountsTest() throws IllegalAccessException {
         createAccountUserOne();
         createAccountUserTwo();
         transerOtherAccount();
@@ -29,7 +29,7 @@ public class BugBankTest extends BaseTest {
         validateValueUserTwo();
     }
 
-    public void createAccountUserOne() {
+    public void createAccountUserOne() throws IllegalAccessException {
         indexTask.createRegister(user1);
         loginTask.accessAccount(user1);
         homeTask.accountExtract();
@@ -37,26 +37,26 @@ public class BugBankTest extends BaseTest {
 
     }
 
-    public void createAccountUserTwo() {
+    public void createAccountUserTwo() throws IllegalAccessException {
         indexTask.createRegister(user2);
         loginTask.accessAccount(user2);
         homeTask.accountExtract();
         extractTask.validateExtract(user2);
     }
 
-    public void transerOtherAccount() {
+    public void transerOtherAccount() throws IllegalAccessException {
         loginTask.accessAccount(user1);
         homeTask.transferOtherAccount();
         transferTask.dataAccount(user1, user2);
     }
 
-    public void validateValueUserOne() {
+    public void validateValueUserOne() throws IllegalAccessException {
         loginTask.accessAccount(user1);
         homeTask.accountExtract();
         extractTask.validateExtract(user1);
     }
 
-    public void validateValueUserTwo() {
+    public void validateValueUserTwo() throws IllegalAccessException {
         loginTask.accessAccount(user2);
         homeTask.accountExtract();
         extractTask.validateExtract(user2);
