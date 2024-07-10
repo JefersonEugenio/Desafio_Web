@@ -19,7 +19,7 @@ public class ExtractTask {
         extractAppObjects = new ExtractAppObjects(driver);
     }
 
-    public void validateExtract(EncapsulationData user) {
+    public void validateExtract(EncapsulationData user) throws IllegalAccessException {
         String value = extractAppObjects.getBalanceText().getText().replaceAll("[^0-9.,]", "");
         user.setBalance(value);
         if (ObjectsUtils.getPropertiesData("dados", "Value_transfer") == null) {

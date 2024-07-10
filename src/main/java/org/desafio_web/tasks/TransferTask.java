@@ -20,7 +20,7 @@ public class TransferTask {
         transferAppObjects = new TransferAppObjects(driver);
     }
 
-    public void dataAccount(EncapsulationData user1, EncapsulationData user2) {
+    public void dataAccount(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException {
         String numberAccount = ObjectsUtils.getPropertiesData("dados", user2.getName());
         String number = numberAccount.split("-")[0];
         String digit = numberAccount.split("-")[1];
@@ -32,7 +32,11 @@ public class TransferTask {
         transferAppObjects.getDescriptionFiled().sendKeys("Doar");
         transferAppObjects.getTransferNowButton().click();
         if (transferAppObjects.getTransferSuccessText().getText().equals("Transferencia realizada com sucesso")) {
-            extentTest.log(Status.PASS, "Transferencia realizada com sucesso", Screenshot.screenshotBase64(driver));
+            if (Screenshot.screenshotBase64(driver) != null) {
+                extentTest.log(Status.PASS, "Transferencia realizada com sucesso", Screenshot.screenshotBase64(driver));
+            } else {
+                extentTest.log(Status.FAIL, "Falha ao capturar a screenshot");
+            }
         } else {
             extentTest.log(Status.FAIL, "Conta inválida ou inexistente", Screenshot.screenshotBase64(driver));
         }
