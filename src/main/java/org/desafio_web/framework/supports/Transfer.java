@@ -21,7 +21,6 @@ public class Transfer {
         double value = fakers.getValue();
         String valueStr = Double.toString(value);
         String dfValueStr = df.format(value);
-        ObjectsUtils.setPropertiesData("dados", "Value_transfer", dfValueStr);
         extentTest.log(Status.INFO, "Transferencia valor é " + dfValueStr);
         return valueStr;
     }
