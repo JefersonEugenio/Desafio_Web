@@ -3,9 +3,11 @@ package org.desafio_web.tasks;
 import org.desafio_web.appObjects.RegisterAppObjects;
 import org.desafio_web.appObjects.LoginAppObjects;
 import org.desafio_web.framework.data.EncapsulationData;
-import org.desafio_web.framework.utils.ObjectsUtils;
+import org.desafio_web.framework.utils.CreateCsv;
 import org.desafio_web.framework.webDrivers.DriverManager;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 public class RegisterTask {
 
@@ -19,7 +21,7 @@ public class RegisterTask {
         registerAppObjects = new RegisterAppObjects(driver);
     }
 
-    public void createRegister(EncapsulationData user) {
+    public void createRegister(EncapsulationData user) throws IOException {
         loginAppObjects.getLoginRegisterButton().click();
         registerAppObjects.getRegisterEmailField().sendKeys(user.getEmail());
         registerAppObjects.getRegisterNameField().sendKeys(user.getName());
@@ -28,7 +30,7 @@ public class RegisterTask {
         registerAppObjects.getRegisterCreateAccountBalanceToggle().click();
         registerAppObjects.getRegisterFinalButton();
         user.setAccount(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
-        ObjectsUtils.setPropertiesData("dados", user.getName(), user.getAccount());
+        CreateCsv.inserirDados(user.getAccount(), user.getEmail(), user.getName(), user.getPassword());
         registerAppObjects.getCloseModalButton().click();
         DriverManager.getDriver().navigate().refresh();
     }
