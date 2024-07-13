@@ -6,6 +6,8 @@ import org.desafio_web.framework.webDrivers.DriverManager;
 import org.desafio_web.tasks.*;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.desafio_web.framework.data.UseresData.userTwo;
 import static org.desafio_web.framework.data.UseresData.userOne;
 
@@ -21,7 +23,7 @@ public class BugBankTest extends BaseTest {
     EncapsulationData user2 = userTwo();
 
     @Test
-    public void accomplishTransferAccountsTest() throws IllegalAccessException {
+    public void accomplishTransferAccountsTest() throws IllegalAccessException, IOException {
         createAccountUserOne();
         createAccountUserTwo();
         transerOtherAccount();
@@ -29,7 +31,7 @@ public class BugBankTest extends BaseTest {
         validateValueUserTwo();
     }
 
-    public void createAccountUserOne() throws IllegalAccessException {
+    public void createAccountUserOne() throws IllegalAccessException, IOException {
         indexTask.createRegister(user1);
         loginTask.accessAccount(user1);
         homeTask.accountExtract();
@@ -37,14 +39,14 @@ public class BugBankTest extends BaseTest {
 
     }
 
-    public void createAccountUserTwo() throws IllegalAccessException {
+    public void createAccountUserTwo() throws IllegalAccessException, IOException {
         indexTask.createRegister(user2);
         loginTask.accessAccount(user2);
         homeTask.accountExtract();
         extractTask.validateExtract(user2);
     }
 
-    public void transerOtherAccount() throws IllegalAccessException {
+    public void transerOtherAccount() throws IllegalAccessException, IOException {
         loginTask.accessAccount(user1);
         homeTask.transferOtherAccount();
         transferTask.dataAccount(user1, user2);
