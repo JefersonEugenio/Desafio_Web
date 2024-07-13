@@ -17,12 +17,14 @@ import static org.desafio_web.framework.tools.Report.extentTest;
 
 public class BaseTest extends DriverFactory {
 
-    public static String CREATE_FILE = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "properties" + File.separator + "dados.properties";
+    public static String CREATE_FOLDER_CSV = System.getProperty("user.dir") + File.separator
+            + "src" + File.separator + "main" + File.separator + "resources"
+            + File.separator + "CSV" + File.separator;
 
     @BeforeAll
     public static void setUp() throws IOException {
-        CreateFolder.deleteFile(CREATE_FILE);
-        CreateFolder.createFolderFile(CREATE_FILE);
+        CreateFolder.deleteDirectoryRecursively(new File(CREATE_FOLDER_CSV));
+        CreateFolder.createDirectory(CREATE_FOLDER_CSV);
         Report.configurarExtentReport();
         Report.createTest("BugBank");
         DriverManager.setDriver(getBrower(Drivers.CHROME));
