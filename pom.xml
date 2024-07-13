@@ -37,7 +37,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.8.0</version>
+      <version>5.9.1</version>
     </dependency>
 
     <dependency>
@@ -50,6 +50,12 @@
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
       <version>5.1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>4.6</version>
     </dependency>
 
   </dependencies>
