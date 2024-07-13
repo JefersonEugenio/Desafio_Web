@@ -5,8 +5,10 @@ import org.desafio_web.appObjects.TransferAppObjects;
 import org.desafio_web.framework.data.EncapsulationData;
 import org.desafio_web.framework.supports.Transfer;
 import org.desafio_web.framework.tools.Screenshot;
-import org.desafio_web.framework.utils.ObjectsUtils;
+import org.desafio_web.framework.utils.CreateCsv;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 import static org.desafio_web.framework.tools.Report.extentTest;
 
@@ -20,13 +22,14 @@ public class TransferTask {
         transferAppObjects = new TransferAppObjects(driver);
     }
 
-    public void dataAccount(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException {
-        String numberAccount = ObjectsUtils.getPropertiesData("dados", user2.getName());
-        String number = numberAccount.split("-")[0];
-        String digit = numberAccount.split("-")[1];
+    public void dataAccount(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException, IOException {
+        String numeroConta = CreateCsv.leituraDados(user2);
+        String number = numeroConta.split("-")[0];
+        String digit = numeroConta.split("-")[1];
         transferAppObjects.getNumberAccountField().sendKeys(number);
         transferAppObjects.getNumberDigitField().sendKeys(digit);
         user1.setTransferValue(Transfer.value());
+        CreateCsv.inserirValorTransfer(user1.getTransferValue());
         transferAppObjects.getValueTransferFiled().sendKeys(user1.getTransferValue());
         Transfer.transfer(user1.getBalance(), user2.getBalance(), user1.getTransferValue());
         transferAppObjects.getDescriptionFiled().sendKeys("Doar");
