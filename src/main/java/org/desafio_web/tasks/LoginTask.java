@@ -14,7 +14,7 @@ public class LoginTask {
         loginAppObjects = new LoginAppObjects(driver);
     }
 
-    public void accessAccount(EncapsulationData user) {
+    public void accessAccountLogin(EncapsulationData user) {
         loginAppObjects.getLoginEmailField().sendKeys(user.getEmail());
         loginAppObjects.getLoginPasswordField().sendKeys(user.getPassword());
         loginAppObjects.getLoginAccessButton().click();

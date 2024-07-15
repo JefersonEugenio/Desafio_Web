@@ -21,7 +21,7 @@ public class ExtractTask {
         extractAppObjects = new ExtractAppObjects(driver);
     }
 
-    public void validateExtract(EncapsulationData user) throws IllegalAccessException {
+    public void validateAccountExtract(EncapsulationData user) throws IllegalAccessException {
         File pasta = new File(CreateCsv.PATH_CSV + "transfer.csv");
         String value = extractAppObjects.getBalanceText().getText().replaceAll("[^0-9.,]", "");
         user.setBalance(value);

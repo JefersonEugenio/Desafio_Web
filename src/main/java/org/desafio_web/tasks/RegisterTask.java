@@ -21,7 +21,7 @@ public class RegisterTask {
         registerAppObjects = new RegisterAppObjects(driver);
     }
 
-    public void createRegister(EncapsulationData user) throws IOException {
+    public void createRegisterUser(EncapsulationData user) throws IOException {
         loginAppObjects.getLoginRegisterButton().click();
         registerAppObjects.getRegisterEmailField().sendKeys(user.getEmail());
         registerAppObjects.getRegisterNameField().sendKeys(user.getName());

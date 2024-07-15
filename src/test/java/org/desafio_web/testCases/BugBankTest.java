@@ -32,36 +32,36 @@ public class BugBankTest extends BaseTest {
     }
 
     public void createAccountUserOne() throws IllegalAccessException, IOException {
-        indexTask.createRegister(user1);
-        loginTask.accessAccount(user1);
-        homeTask.accountExtract();
-        extractTask.validateExtract(user1);
+        indexTask.createRegisterUser(user1);
+        loginTask.accessAccountLogin(user1);
+        homeTask.accessAccountExtract();
+        extractTask.validateAccountExtract(user1);
 
     }
 
     public void createAccountUserTwo() throws IllegalAccessException, IOException {
-        indexTask.createRegister(user2);
-        loginTask.accessAccount(user2);
-        homeTask.accountExtract();
-        extractTask.validateExtract(user2);
+        indexTask.createRegisterUser(user2);
+        loginTask.accessAccountLogin(user2);
+        homeTask.accessAccountExtract();
+        extractTask.validateAccountExtract(user2);
     }
 
     public void transerOtherAccount() throws IllegalAccessException, IOException {
-        loginTask.accessAccount(user1);
-        homeTask.transferOtherAccount();
-        transferTask.dataAccount(user1, user2);
+        loginTask.accessAccountLogin(user1);
+        homeTask.transferOtherAccountUser();
+        transferTask.dataAccountUserTransfereOtherAccountUser(user1, user2);
     }
 
     public void validateValueUserOne() throws IllegalAccessException {
-        loginTask.accessAccount(user1);
-        homeTask.accountExtract();
-        extractTask.validateExtract(user1);
+        loginTask.accessAccountLogin(user1);
+        homeTask.accessAccountExtract();
+        extractTask.validateAccountExtract(user1);
     }
 
     public void validateValueUserTwo() throws IllegalAccessException {
-        loginTask.accessAccount(user2);
-        homeTask.accountExtract();
-        extractTask.validateExtract(user2);
+        loginTask.accessAccountLogin(user2);
+        homeTask.accessAccountExtract();
+        extractTask.validateAccountExtract(user2);
     }
 
 }

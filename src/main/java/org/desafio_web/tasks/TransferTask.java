@@ -22,7 +22,7 @@ public class TransferTask {
         transferAppObjects = new TransferAppObjects(driver);
     }
 
-    public void dataAccount(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException, IOException {
+    public void dataAccountUserTransfereOtherAccountUser(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException, IOException {
         transferAppObjects.getNumberAccountField().sendKeys(CreateCsv.leituraDados(user2).split("-")[0]);
         transferAppObjects.getNumberDigitField().sendKeys(CreateCsv.leituraDados(user2).split("-")[1]);
         user1.setTransferValue(Transfer.value());
