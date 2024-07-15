@@ -23,11 +23,8 @@ public class TransferTask {
     }
 
     public void dataAccount(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException, IOException {
-        String numeroConta = CreateCsv.leituraDados(user2);
-        String number = numeroConta.split("-")[0];
-        String digit = numeroConta.split("-")[1];
-        transferAppObjects.getNumberAccountField().sendKeys(number);
-        transferAppObjects.getNumberDigitField().sendKeys(digit);
+        transferAppObjects.getNumberAccountField().sendKeys(CreateCsv.leituraDados(user2).split("-")[0]);
+        transferAppObjects.getNumberDigitField().sendKeys(CreateCsv.leituraDados(user2).split("-")[1]);
         user1.setTransferValue(Transfer.value());
         CreateCsv.inserirValorTransfer(user1.getTransferValue());
         transferAppObjects.getValueTransferFiled().sendKeys(user1.getTransferValue());
