@@ -22,24 +22,51 @@ public class TransferTask {
         transferAppObjects = new TransferAppObjects(driver);
     }
 
-    public void dataAccountUserTransfereOtherAccountUser(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException, IOException {
-        transferAppObjects.getNumberAccountField().sendKeys(CreateCsv.leituraDados(user2).split("-")[0]);
-        transferAppObjects.getNumberDigitField().sendKeys(CreateCsv.leituraDados(user2).split("-")[1]);
-        user1.setTransferValue(Transfer.value());
-        CreateCsv.inserirValorTransfer(user1.getTransferValue());
-        transferAppObjects.getValueTransferFiled().sendKeys(user1.getTransferValue());
-        Transfer.transfer(user1.getBalance(), user2.getBalance(), user1.getTransferValue());
+    public void transferirDadosContaUsuarioParaOutraConta(EncapsulationData user1, EncapsulationData user2) throws IllegalAccessException, IOException {
+        String[] dadosContaUsuario2 = CreateCsv.leituraDados(user2).split("-");
+        String numeroConta = dadosContaUsuario2[0];
+        String digitoConta = dadosContaUsuario2[1];
+
+        preencherFormularioTransferencia(user1, numeroConta, digitoConta);
+        realizarTransferencia(user1, user2);
+        validarSucessoTransferencia();
+        fecharDialogosTransferencia();
+    }
+
+    private void preencherFormularioTransferencia(EncapsulationData user1, String numeroConta, String digitoConta) throws IOException {
+        transferAppObjects.getNumberAccountField().sendKeys(numeroConta);
+        transferAppObjects.getNumberDigitField().sendKeys(digitoConta);
+        String valorTransferencia = Transfer.value();
+        user1.setTransferirValor(valorTransferencia);
+        CreateCsv.inserirValorTransfer(valorTransferencia);
+        transferAppObjects.getValueTransferFiled().sendKeys(valorTransferencia);
         transferAppObjects.getDescriptionFiled().sendKeys("Doar");
+    }
+
+    private void realizarTransferencia(EncapsulationData user1, EncapsulationData user2) {
+        Transfer.transfer(user1.getSaldo(), user2.getSaldo(), user1.getTransferirValor());
         transferAppObjects.getTransferNowButton().click();
-        if (transferAppObjects.getTransferSuccessText().getText().equals("Transferencia realizada com sucesso")) {
-            if (Screenshot.screenshotBase64(driver) != null) {
-                extentTest.log(Status.PASS, "Transferencia realizada com sucesso", Screenshot.screenshotBase64(driver));
-            } else {
-                extentTest.log(Status.FAIL, "Falha ao capturar a screenshot");
-            }
+    }
+
+    private void validarSucessoTransferencia() throws IllegalAccessException {
+        String mensagemSucesso = "Transferencia realizada com sucesso";
+        if (transferAppObjects.getTransferSuccessText().getText().equals(mensagemSucesso)) {
+            registrarResultadoTransferencia(Status.PASS, mensagemSucesso);
         } else {
-            extentTest.log(Status.FAIL, "Conta inválida ou inexistente", Screenshot.screenshotBase64(driver));
+            registrarResultadoTransferencia(Status.FAIL, "Conta inválida ou inexistente");
         }
+    }
+
+    private void registrarResultadoTransferencia(Status status, String mensagem) throws IllegalAccessException {
+        String screenshot = String.valueOf(Screenshot.screenshotBase64(driver));
+        if (status == Status.PASS && screenshot == null) {
+            extentTest.log(Status.FAIL, "Falha ao capturar a screenshot");
+        } else {
+            extentTest.log(status, mensagem, Screenshot.screenshotBase64(driver));
+        }
+    }
+
+    private void fecharDialogosTransferencia() {
         transferAppObjects.getTransferCloseButton().click();
         transferAppObjects.getTransExitButton().click();
     }

@@ -13,11 +13,11 @@ public class HomeTask {
         homeAppObjects = new HomeAppObjects(driver);
     }
 
-    public void transferOtherAccountUser() {
+    public void transferirParaOutraConta() {
         homeAppObjects.getTransferButton().click();
     }
 
-    public void accessAccountExtract() {
+    public void acessarExtratoConta() {
         homeAppObjects.getExtractButton().click();
     }
 

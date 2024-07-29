@@ -5,25 +5,25 @@ import org.desafio_web.framework.supports.Fakers;
 public class UseresData {
 
     private static Fakers fakers = new Fakers();
-    private static EncapsulationData data = new EncapsulationData();
+    private static EncapsulationData dados = new EncapsulationData();
 
-    public static EncapsulationData userOne() {
+    public static EncapsulationData usuarioUm() {
         String email = fakers.getEmail();
-        String name = email.split("\\.")[0];
-        data.setEmail(email);
-        data.setName(name);
-        data.setPassword(fakers.getPassword());
-        EncapsulationData userOne = new EncapsulationData(data.getEmail(), data.getName(), data.getPassword(), data.getPassword());
-        return userOne;
+        String nome = email.split("\\.")[0];
+        dados.setEmail(email);
+        dados.setNome(nome);
+        dados.setSenha(fakers.getPassword());
+        EncapsulationData usuarioUm = new EncapsulationData(dados.getEmail(), dados.getNome(), dados.getSenha(), dados.getSenha());
+        return usuarioUm;
     }
 
-    public static EncapsulationData userTwo() {
+    public static EncapsulationData usuarioDois() {
         String email = fakers.getEmail();
-        String name = email.split("\\.")[0];
-        data.setEmail(email);
-        data.setName(name);
-        data.setPassword(fakers.getPassword());
-        EncapsulationData userTwo = new EncapsulationData(data.getEmail(), data.getName(), data.getPassword(), data.getPassword());
-        return userTwo;
+        String nome = email.split("\\.")[0];
+        dados.setEmail(email);
+        dados.setNome(nome);
+        dados.setSenha(fakers.getPassword());
+        EncapsulationData usuarioDois = new EncapsulationData(dados.getEmail(), dados.getNome(), dados.getSenha(), dados.getSenha());
+        return usuarioDois;
     }
 }

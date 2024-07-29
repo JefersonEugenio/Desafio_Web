@@ -3,6 +3,7 @@ package org.desafio_web.framework.supports;
 import com.aventstack.extentreports.Status;
 import org.desafio_web.framework.tools.Report;
 import org.desafio_web.framework.utils.CreateFolder;
+import org.desafio_web.framework.utils.ExcluirDiretorio;
 import org.desafio_web.framework.utils.ObjectsUtils;
 import org.desafio_web.framework.webDrivers.DriverFactory;
 import org.desafio_web.framework.webDrivers.DriverManager;
@@ -17,14 +18,14 @@ import static org.desafio_web.framework.tools.Report.extentTest;
 
 public class BaseTest extends DriverFactory {
 
-    public static String CREATE_FOLDER_CSV = System.getProperty("user.dir") + File.separator
+    public static String CAMINHO_PASTA_CSV = System.getProperty("user.dir") + File.separator
             + "src" + File.separator + "main" + File.separator + "resources"
             + File.separator + "CSV" + File.separator;
 
     @BeforeAll
     public static void setUp() throws IOException {
-        CreateFolder.deleteDirectoryRecursively(new File(CREATE_FOLDER_CSV));
-        CreateFolder.createDirectory(CREATE_FOLDER_CSV);
+        ExcluirDiretorio.excluirTodosArquivoDiretorio(CAMINHO_PASTA_CSV);
+        CreateFolder.createDirectory(CAMINHO_PASTA_CSV);
         Report.configurarExtentReport();
         Report.createTest("BugBank");
         DriverManager.setDriver(getBrower(Drivers.CHROME));

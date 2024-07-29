@@ -21,16 +21,16 @@ public class RegisterTask {
         registerAppObjects = new RegisterAppObjects(driver);
     }
 
-    public void createRegisterUser(EncapsulationData user) throws IOException {
+    public void criarRegistroUsuario(EncapsulationData user) throws IOException {
         loginAppObjects.getLoginRegisterButton().click();
         registerAppObjects.getRegisterEmailField().sendKeys(user.getEmail());
-        registerAppObjects.getRegisterNameField().sendKeys(user.getName());
-        registerAppObjects.getRegisterPasswordField().sendKeys(user.getPassword());
-        registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getPassword());
+        registerAppObjects.getRegisterNameField().sendKeys(user.getNome());
+        registerAppObjects.getRegisterPasswordField().sendKeys(user.getSenha());
+        registerAppObjects.getResgiterPasswordConfirmationField().sendKeys(user.getSenha());
         registerAppObjects.getRegisterCreateAccountBalanceToggle().click();
         registerAppObjects.getRegisterFinalButton();
-        user.setAccount(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
-        CreateCsv.inserirDados(user.getAccount(), user.getEmail(), user.getName(), user.getPassword());
+        user.setConta(registerAppObjects.getNumberAccountText().getText().replaceAll("[^0-9-]", ""));
+        CreateCsv.inserirDados(user.getConta(), user.getEmail(), user.getNome(), user.getSenha());
         registerAppObjects.getCloseModalButton().click();
         DriverManager.getDriver().navigate().refresh();
     }

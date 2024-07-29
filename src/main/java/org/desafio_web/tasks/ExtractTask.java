@@ -8,6 +8,8 @@ import org.desafio_web.framework.utils.CreateCsv;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.desafio_web.framework.tools.Report.extentTest;
 
@@ -21,16 +23,28 @@ public class ExtractTask {
         extractAppObjects = new ExtractAppObjects(driver);
     }
 
-    public void validateAccountExtract(EncapsulationData user) throws IllegalAccessException {
-        File pasta = new File(CreateCsv.PATH_CSV + "transfer.csv");
-        String value = extractAppObjects.getBalanceText().getText().replaceAll("[^0-9.,]", "");
-        user.setBalance(value);
-        if (!pasta.isFile()) {
-            extentTest.log(Status.INFO, "Verificar o valor do saldo "+ user.getName()+ " é " + user.getBalance());
-        } else {
-            extentTest.log(Status.PASS, "Verificar o valor do saldo "+ user.getName()+ " é " + user.getBalance(), Screenshot.screenshotBase64(driver));
-        }
+    public void validarExtratoConta(EncapsulationData user) throws IllegalAccessException {
+        File pasta = new File(CreateCsv.CAMINHO_CSV + "transfer.csv");
+
+        String valor = extractAppObjects.getBalanceText().getText().replaceAll("[^0-9.,]", "");
+
+        user.setSaldo(valor);
+
+        informarSaldo(user, pasta.toPath());
+
         extractAppObjects.getExitButton().click();
+    }
+
+    private void informarSaldo(EncapsulationData user, Path path) {
+        try {
+            if (Files.exists(path)) {
+                extentTest.log(Status.PASS, "Verificar o valor do saldo "+ user.getNome()+ " é " + user.getSaldo(), Screenshot.screenshotBase64(driver));
+            } else {
+                extentTest.log(Status.INFO, "Verificar o valor do saldo "+ user.getNome()+ " é " + user.getSaldo());
+            }
+        } catch (IllegalAccessException e) {
+            extentTest.log(Status.FAIL, "Erro ao verificar a existência do arquivo: " + e.getMessage());
+        }
     }
 
 }

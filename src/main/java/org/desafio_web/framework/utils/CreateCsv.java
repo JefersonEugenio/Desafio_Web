@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CreateCsv {
 
-    public static String PATH_CSV = System.getProperty("user.dir")
+    public static String CAMINHO_CSV = System.getProperty("user.dir")
             + File.separator + "src" + File.separator + "main" + File.separator
             + "resources" + File.separator + "CSV" + File.separator;
 
@@ -26,7 +26,7 @@ public class CreateCsv {
         List<String[]> linhas = new ArrayList<>();
         linhas.add(new String[]{conta, email, nome, senha});
 
-        Writer writer = Files.newBufferedWriter(Paths.get( PATH_CSV + nome + ".csv"));
+        Writer writer = Files.newBufferedWriter(Paths.get( CAMINHO_CSV + nome + ".csv"));
         CSVWriter csvWriter = new CSVWriter(writer);
 
         csvWriter.writeNext(cabecalho);
@@ -42,7 +42,7 @@ public class CreateCsv {
         List<String[]> linhas = new ArrayList<>();
         linhas.add(new String[]{transfer});
 
-        Writer writer = Files.newBufferedWriter(Paths.get( PATH_CSV  + "transfer.csv"));
+        Writer writer = Files.newBufferedWriter(Paths.get( CAMINHO_CSV + "transfer.csv"));
         CSVWriter csvWriter = new CSVWriter(writer);
 
         csvWriter.writeNext(cabecalho);
@@ -54,7 +54,7 @@ public class CreateCsv {
 
     public static String leituraDados(EncapsulationData user) throws IOException {
 
-        Reader reader = Files.newBufferedReader(Paths.get(PATH_CSV + user.getName() + ".csv"));
+        Reader reader = Files.newBufferedReader(Paths.get(CAMINHO_CSV + user.getNome() + ".csv"));
         CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
 
         List<String[]> pessoas = csvReader.readAll();

@@ -2,14 +2,14 @@ package org.desafio_web.framework.data;
 
 public class EncapsulationData {
 
-    private String email, name, password;
-    private String account;
-    private String balance, transferValue;
+    private String email, nome, senha;
+    private String conta;
+    private String saldo, transferirValor;
 
-    public EncapsulationData(String email, String name, String password, String confirmPassword) {
+    public EncapsulationData(String email, String nome, String senha, String confirmPassword) {
         this.email = email;
-        this.name = name;
-        this.password = password;
+        this.nome = nome;
+        this.senha = senha;
     }
 
     public EncapsulationData() {
@@ -24,43 +24,43 @@ public class EncapsulationData {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getAccount() {
-        return account;
+    public String getConta() {
+        return conta;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setConta(String conta) {
+        this.conta = conta;
     }
 
-    public String getBalance() {
-        return balance;
+    public String getSaldo() {
+        return saldo;
     }
 
-    public void setBalance(String balance) {
-        this.balance = balance;
+    public void setSaldo(String saldo) {
+        this.saldo = saldo;
     }
 
-    public String getTransferValue() {
-        return transferValue;
+    public String getTransferirValor() {
+        return transferirValor;
     }
 
-    public void setTransferValue(String transferValue) {
-        this.transferValue = transferValue;
+    public void setTransferirValor(String transferirValor) {
+        this.transferirValor = transferirValor;
     }
 }
